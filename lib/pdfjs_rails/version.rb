@@ -1,3 +1,3 @@
 module PdfjsRails
-  VERSION = "1.0.277"
+  VERSION = "1.1.469"
 end
