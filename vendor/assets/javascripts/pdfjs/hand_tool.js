@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/* globals mozL10n, GrabToPan, PDFView, Preferences, SecondaryToolbar */
+/* globals mozL10n, GrabToPan, Preferences, SecondaryToolbar */
 
 'use strict';
 
@@ -49,6 +49,17 @@ var HandTool = {
             this.handTool.activate();
           }
         }.bind(this), function rejected(reason) {});
+      }.bind(this));
+
+      window.addEventListener('presentationmodechanged', function (evt) {
+        if (evt.detail.switchInProgress) {
+          return;
+        }
+        if (evt.detail.active) {
+          this.enterPresentationMode();
+        } else {
+          this.exitPresentationMode();
+        }
       }.bind(this));
     }
   },
